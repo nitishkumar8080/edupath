@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free educational batches, subjects, lectures and PDF notes.">
+  <title>EduPath — Learn Better</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="EduPath home"><span class="brand-mark">E</span><span>EduPath</span></a>
+    <nav><a class="nav-link active" href="index.html">Home</a><a class="nav-link" href="#batches">Batches</a></nav>
+    <a class="top-cta" href="#batches">Explore batches <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR LEARNING SPACE</p>
+        <h1>Learn at your pace.<br><span>Grow every day.</span></h1>
+        <p class="hero-description">All your batches, subjects, lectures and study PDFs — neatly organised in one place.</p>
+        <a class="primary-button" href="#batches">Explore batches <span aria-hidden="true">→</span></a>
+        <div class="hero-note"><span class="note-icon">✓</span> Simple. Organised. Student-friendly.</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="art-card art-card-back"><span class="mini-label">YOUR PROGRESS</span><div class="progress-ring">75%</div><span class="art-muted">Keep it up!</span></div>
+        <div class="art-card art-card-main"><div class="book-icon">▤</div><div class="art-title">Study smarter</div><div class="art-muted">One lesson at a time</div><div class="fake-lines"><i></i><i></i><i></i></div></div>
+        <div class="floating-chip chip-video">▶ &nbsp; Video lessons</div>
+        <div class="floating-chip chip-pdf">▧ &nbsp; PDF notes</div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Platform features">
+      <div><strong>01</strong><span>Choose a batch</span></div><div><strong>02</strong><span>Open a subject</span></div><div><strong>03</strong><span>Start learning</span></div>
+    </section>
+
+    <section class="section" id="batches">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR CLASSROOM</p><h2>Explore batches</h2><p class="section-subtitle">Pick up where your learning journey begins.</p></div>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="batch-search" type="search" placeholder="Search batches..." aria-label="Search batches"></label>
+      </div>
+      <div id="batch-grid" class="batch-grid" aria-live="polite"></div>
+      <p id="empty-state" class="empty-state" hidden>No batches match your search.</p>
+    </section>
+    <section class="bottom-banner"><div><p class="eyebrow">SMALL STEPS, BIG RESULTS</p><h2>Make today a learning day.</h2><p>Your next lesson is just a click away.</p></div><a href="#batches" class="light-button">Find your batch →</a></section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="index.html"><span class="brand-mark">E</span><span>EduPath</span></a><span>Built for curious minds.</span><span>© <span id="year"></span> EduPath</span></footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
