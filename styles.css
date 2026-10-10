@@ -714,3 +714,149 @@ footer a {
 .pdf-card a:hover {
   color: #ffffff;
 }
+
+/* EduPath: Clear, clickable lecture and resource cards */
+
+.lecture-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px;
+  margin-bottom: 14px;
+  background: #111d35;
+  border: 1px solid #2d4265;
+  border-radius: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.lecture-row:hover {
+  border-color: #4b8cff;
+  transform: translateY(-2px);
+}
+
+.lecture-number,
+.lecture-play {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #1c3154;
+  color: #8db8ff;
+}
+
+.lecture-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.lecture-info strong,
+.lecture-info small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.lecture-info small {
+  margin-top: 6px;
+  color: #aab9d1;
+}
+
+.lecture-duration {
+  color: #8db8ff;
+  font-size: 13px;
+}
+
+.row-arrow {
+  color: #8db8ff;
+  font-size: 20px;
+}
+
+.resource-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 84px;
+  padding: 18px;
+  margin: 12px 0;
+  background: #111d35;
+  border: 1px solid #2d4265;
+  border-radius: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.resource-link:hover {
+  border-color: #4b8cff;
+  transform: translateY(-2px);
+}
+
+.resource-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  min-width: 48px;
+  height: 48px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background: #1c3154;
+  color: #8db8ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.resource-link > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.resource-link strong,
+.resource-link small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.resource-link small {
+  margin-top: 6px;
+  color: #aab9d1;
+}
+
+.resource-link b {
+  color: #8db8ff;
+  font-size: 20px;
+}
+
+.disabled-link {
+  opacity: 0.55;
+}
+
+@media (max-width: 600px) {
+  .lecture-row {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .lecture-number,
+  .lecture-play {
+    width: 32px;
+    height: 32px;
+  }
+
+  .lecture-duration {
+    display: none;
+  }
+
+  .resource-link {
+    padding: 14px;
+  }
+}
