@@ -91,35 +91,25 @@ function renderLecture() {
   const pdf = $("#pdf-link"), video = $("#video-link"), frame = $("#video-frame");
   if (lecture.pdfUrl) { pdf.href = lecture.pdfUrl; pdf.classList.remove("disabled-link"); pdf.setAttribute("aria-label", "Open lecture PDF notes"); }
   else { pdf.href = "#"; pdf.classList.add("disabled-link"); pdf.addEventListener("click", e => { e.preventDefault(); alert("PDF link not added yet. Add pdfUrl in data.js."); }); }
+
   if (lecture.videoUrl) {
-    video.href = lecture.videoUrl; video.classList.remove("disabled-link");
-    const match = lecture.videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
-    if (match) frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(match[1])}" title="${safe(lecture.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>`;
-    else frame.innerHTML = `<div class="video-placeholder"><span class="play-big">↗</span><strong>Video link ready</strong><a href="${safe(lecture.videoUrl)}" target="_blank" rel="noopener">Open video in a new tab</a></div>`;
+    video.href = lecture.videoUrl;
+    video.classList.remove("disabled-link");
+
+    const match = lecture.videoUrl.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{6,})/
+    );
+
+    if (match) {
+      frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(match[1])}" title="${safe(lecture.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>`;
+    } else {
+      frame.innerHTML = `<iframe src="${safe(lecture.videoUrl)}" title="${safe(lecture.title)}" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px"></iframe>`;
+    }
   } else {
-    video.href = "#"; video.classList.add("disabled-link");
-    video.addEventListener("click", e => { e.preventDefault(); alert("Video link not added yet. Add videoUrl in data.js."); });
+    video.href = "#";
+    video.classList.add("disabled-link");
+    video.addEventListener("click", e => {
+      e.preventDefault();
+      alert("Video link not added yet. Add videoUrl in data.js.");
+    });
   }
-
-  const extra = $("#extra-resources");
-  if (extra) {
-    const items = [
-      ["notesEnUrl", "English notes", "PDF"],
-      ["notesHiUrl", "Hindi notes", "PDF"],
-      ["quizUrl", "Quiz / practice", "QUIZ"],
-      ["handwrittenUrl", "Handwritten notes", "PDF"],
-      ["pptUrl", "Presentation", "PPT"],
-      ["courseUrl", "Official course access", "LINK"]
-    ];
-    const seen = new Set([lecture.pdfUrl, lecture.videoUrl].filter(Boolean));
-    extra.innerHTML = items.filter(([key]) => {
-      const url = lecture[key];
-      if (!url || seen.has(url)) return false;
-      seen.add(url);
-      return true;
-    }).map(([key, label, badge]) => `<a class="resource-link" href="${safe(lecture[key])}" target="_blank" rel="noopener"><span class="resource-icon">${badge}</span><span><strong>${label}</strong><small>Open in a new tab</small></span><b>↗</b></a>`).join("");
-  }
-
-}
-
-setYear(); renderHome(); renderBatch(); renderSubject(); renderLecture();
