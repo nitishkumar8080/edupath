@@ -1,54 +1,550 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Free educational batches, subjects, lectures and PDF notes.">
-  <title>EduPath — Learn Better</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduPath 2.0</title>
+<style>
+:root {
+  --primary: #4f46e5;
+  --dark: #172033;
+  --muted: #64748b;
+  --bg: #f5f7ff;
+  --border: #e2e8f0;
+  --white: #fff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--dark);
+  font-family: Arial, Helvetica, sans-serif;
+}
+header {
+  background: linear-gradient(135deg,#312e81,#4f46e5,#7c3aed);
+  color: white;
+  padding: 22px 0;
+}
+.wrap { width: min(1050px,94%); margin: auto; }
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand { font-size: 27px; font-weight: 800; }
+.tagline { margin-top: 5px; color: #e0e7ff; font-size: 14px; }
+main { padding: 22px 0 40px; }
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+.back, .home-btn {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 10px;
+  padding: 11px 15px;
+  color: var(--dark);
+  font-weight: 700;
+}
+.back:disabled { opacity: .4; cursor: not-allowed; }
+.search {
+  flex: 1;
+  min-width: 190px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline-color: var(--primary);
+}
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin: 14px 0 22px;
+}
+.crumb {
+  border: 0;
+  padding: 0;
+  color: var(--primary);
+  background: transparent;
+  font-weight: 700;
+}
+.heading { margin: 0 0 7px; font-size: clamp(24px,4vw,32px); }
+.subtitle { margin: 0 0 22px; color: var(--muted); line-height: 1.6; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 15px;
+}
+.card {
+  width: 100%;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  color: var(--dark);
+  box-shadow: 0 5px 18px #17203308;
+  transition: transform .15s, border-color .15s;
+}
+.card:hover { transform: translateY(-2px); border-color: #a5b4fc; }
+.card-icon { font-size: 28px; margin-bottom: 14px; }
+.card-title { font-size: 17px; font-weight: 800; line-height: 1.5; }
+.card-desc { color: var(--muted); font-size: 13px; line-height: 1.6; margin-top: 7px; }
+.card-bottom { margin-top: 15px; color: var(--primary); font-size: 13px; font-weight: 700; }
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.panel h3 { margin: 0 0 12px; }
+.resource-list { display: flex; flex-wrap: wrap; gap: 9px; }
+.resource {
+  display: inline-block;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 11px 14px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.resource:hover { background: #ddd6fe; }
+.meta { color: var(--muted); font-size: 14px; line-height: 1.7; }
+.notice {
+  background: white;
+  border: 1px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 22px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+footer { text-align: center; padding: 25px 0; color: var(--muted); font-size: 13px; }
+@media(max-width:760px) {
+  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:500px) {
+  .grid { grid-template-columns: 1fr; }
+  .brand { font-size: 24px; }
+  .card { padding: 17px; }
+}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="EduPath home"><span class="brand-mark">E</span><span>EduPath</span></a>
-    <nav><a class="nav-link active" href="index.html">Home</a><a class="nav-link" href="#batches">Batches</a></nav>
-    <a class="top-cta" href="#batches">Explore batches <span aria-hidden="true">↗</span></a>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR LEARNING SPACE</p>
-        <h1>Learn at your pace.<br><span>Grow every day.</span></h1>
-        <p class="hero-description">All your batches, subjects, lectures and study PDFs — neatly organised in one place.</p>
-        <a class="primary-button" href="#batches">Explore batches <span aria-hidden="true">→</span></a>
-        <div class="hero-note"><span class="note-icon">✓</span> Simple. Organised. Student-friendly.</div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-glow"></div>
-        <div class="art-card art-card-back"><span class="mini-label">YOUR PROGRESS</span><div class="progress-ring">75%</div><span class="art-muted">Keep it up!</span></div>
-        <div class="art-card art-card-main"><div class="book-icon">▤</div><div class="art-title">Study smarter</div><div class="art-muted">One lesson at a time</div><div class="fake-lines"><i></i><i></i><i></i></div></div>
-        <div class="floating-chip chip-video">▶ &nbsp; Video lessons</div>
-        <div class="floating-chip chip-pdf">▧ &nbsp; PDF notes</div>
-      </div>
-    </section>
+<header>
+  <div class="wrap top">
+    <div>
+      <div class="brand">📚 EduPath 2.0</div>
+      <div class="tagline">Learn today. Grow every day.</div>
+    </div>
+    <button class="home-btn" id="homeBtn">🏠 Home</button>
+  </div>
+</header>
 
-    <section class="stats" aria-label="Platform features">
-      <div><strong>01</strong><span>Choose a batch</span></div><div><strong>02</strong><span>Open a subject</span></div><div><strong>03</strong><span>Start learning</span></div>
-    </section>
+<main class="wrap">
+  <div class="toolbar">
+    <button class="back" id="backBtn" disabled>← Back</button>
+    <input class="search" id="search" type="search"
+      placeholder="🔍 Yahan search karo..." aria-label="Search">
+  </div>
 
-    <section class="section" id="batches">
-      <div class="section-heading">
-        <div><p class="eyebrow">YOUR CLASSROOM</p><h2>Explore batches</h2><p class="section-subtitle">Pick up where your learning journey begins.</p></div>
-        <label class="search-box"><span aria-hidden="true">⌕</span><input id="batch-search" type="search" placeholder="Search batches..." aria-label="Search batches"></label>
-      </div>
-      <div id="batch-grid" class="batch-grid" aria-live="polite"></div>
-      <p id="empty-state" class="empty-state" hidden>No batches match your search.</p>
-    </section>
-    <section class="bottom-banner"><div><p class="eyebrow">SMALL STEPS, BIG RESULTS</p><h2>Make today a learning day.</h2><p>Your next lesson is just a click away.</p></div><a href="#batches" class="light-button">Find your batch →</a></section>
-  </main>
+  <nav class="breadcrumbs" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+  <section id="app" aria-live="polite">
+    <div class="notice">EduPath load ho raha hai...</div>
+  </section>
+</main>
 
-  <footer><a class="brand footer-brand" href="index.html"><span class="brand-mark">E</span><span>EduPath</span></a><span>Built for curious minds.</span><span>© <span id="year"></span> EduPath</span></footer>
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+<footer>EduPath 2.0 · Your learning journey starts here.</footer>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const app = document.getElementById("app");
+  const search = document.getElementById("search");
+  const backBtn = document.getElementById("backBtn");
+  const homeBtn = document.getElementById("homeBtn");
+  const breadcrumbs = document.getElementById("breadcrumbs");
+
+  let stack = [{ type: "home" }];
+
+  function text(value) {
+    return value == null ? "" : String(value);
+  }
+
+  function courseName(course) {
+    return course.title || course.name || course.id || "Course";
+  }
+
+  function subjectName(subject) {
+    return subject.name || subject.title || subject.id || "Subject";
+  }
+
+  function subjectsOf(course) {
+    return Array.isArray(course.subjects) ? course.subjects : [];
+  }
+
+  function lecturesOf(subject) {
+    return Array.isArray(subject.lectures) ? subject.lectures : [];
+  }
+
+  function el(tag, className, value) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value !== undefined) node.textContent = text(value);
+    return node;
+  }
+
+  function add(parent, child) {
+    parent.appendChild(child);
+    return child;
+  }
+
+  function current() {
+    return stack[stack.length - 1];
+  }
+
+  function courseAt(index) {
+    return COURSE_DATA[index];
+  }
+
+  function subjectAt(page) {
+    return subjectsOf(courseAt(page.courseIndex))[page.subjectIndex];
+  }
+
+  // Subject ke lectures ko chapter folders mein arrange karo.
+  // Agar data.js mein chapters nahi hain, to lecture ke chapter/unit/topic
+  // field se grouping hogi; warna "All Lectures" folder banega.
+  function chaptersOf(subject) {
+    if (Array.isArray(subject.chapters) && subject.chapters.length) {
+      return subject.chapters.map((chapter, index) => ({
+        key: "chapter:" + index,
+        name: chapter.title || chapter.name || chapter.id || ("Chapter " + (index + 1)),
+        description: chapter.description || "",
+        lectures: Array.isArray(chapter.lectures) ? chapter.lectures : []
+      }));
+    }
+
+    const lectures = lecturesOf(subject);
+    const groups = new Map();
+
+    lectures.forEach((lecture, index) => {
+      const chapterName =
+        lecture.chapterName ||
+        lecture.chapter ||
+        lecture.unit ||
+        lecture.topic ||
+        "All Lectures";
+
+      const key = text(chapterName);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push({ ...lecture, __originalIndex: index });
+    });
+
+    return Array.from(groups.entries()).map(([name, items], index) => ({
+      key: "group:" + index,
+      name,
+      description: "",
+      lectures: items
+    }));
+  }
+
+  function getChapter(page) {
+    const chapters = chaptersOf(subjectAt(page));
+    return chapters.find(chapter => chapter.key === page.chapterKey) || null;
+  }
+
+  function makeCard(icon, title, description, bottom, onClick) {
+    const button = el("button", "card");
+    button.type = "button";
+    add(button, el("div", "card-icon", icon));
+    add(button, el("div", "card-title", title));
+    if (description) add(button, el("div", "card-desc", description));
+    if (bottom) add(button, el("div", "card-bottom", bottom));
+    button.addEventListener("click", onClick);
+    return button;
+  }
+
+  function openPage(page) {
+    stack.push(page);
+    search.value = "";
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function goBack() {
+    if (stack.length > 1) {
+      stack.pop();
+      search.value = "";
+      render();
+    }
+  }
+
+  function goHome() {
+    stack = [{ type: "home" }];
+    search.value = "";
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function goTo(index) {
+    stack = stack.slice(0, index + 1);
+    search.value = "";
+    render();
+  }
+
+  function renderBreadcrumbs() {
+    breadcrumbs.replaceChildren();
+
+    stack.forEach((page, index) => {
+      if (index > 0) add(breadcrumbs, el("span", "", "›"));
+
+      const label =
+        page.type === "home" ? "Home" :
+        page.type === "course" ? courseName(courseAt(page.courseIndex)) :
+        page.type === "subject" ? subjectName(subjectAt(page)) :
+        page.type === "chapter" ? (getChapter(page)?.name || "Chapter") :
+        (page.lecture?.title || "Lecture");
+
+      const crumb = el("button", "crumb", label);
+      crumb.type = "button";
+      crumb.addEventListener("click", () => goTo(index));
+      add(breadcrumbs, crumb);
+    });
+  }
+
+  function addResource(container, label, url) {
+    if (typeof url !== "string" || !url.trim()) return;
+
+    try {
+      const parsed = new URL(url.trim(), window.location.href);
+      if (!["https:", "http:"].includes(parsed.protocol)) return;
+
+      const link = el("a", "resource", label);
+      link.href = parsed.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      add(container, link);
+    } catch (_) {}
+  }
+
+  function showHome(query) {
+    const heading = el("h1", "heading", "Apna Course Chuno 🎓");
+    add(app, heading);
+    add(app, el("p", "subtitle",
+      "Pehle course chuno, phir subject, chapter aur apna lecture kholo."));
+
+    const grid = add(app, el("div", "grid"));
+    let count = 0;
+
+    COURSE_DATA.forEach((course, index) => {
+      const name = courseName(course);
+      const description = course.description || "Course ke subjects aur lectures dekhein.";
+      const searchable = (name + " " + description).toLowerCase();
+      if (query && !searchable.includes(query)) return;
+
+      count++;
+      grid.appendChild(makeCard(
+        "📘",
+        name,
+        description,
+        subjectsOf(course).length + " subjects  →",
+        () => openPage({ type: "course", courseIndex: index })
+      ));
+    });
+
+    if (!count) showEmpty("Is search se koi course nahi mila.");
+  }
+
+  function showCourse(page, query) {
+    const course = courseAt(page.courseIndex);
+    add(app, el("h1", "heading", courseName(course)));
+    add(app, el("p", "subtitle",
+      course.description || "Apne course ka subject select karo."));
+
+    const grid = add(app, el("div", "grid"));
+    let count = 0;
+
+    subjectsOf(course).forEach((subject, subjectIndex) => {
+      const name = subjectName(subject);
+      const chapters = chaptersOf(subject);
+      const lectures = chapters.reduce((sum, chapter) => sum + chapter.lectures.length, 0);
+      const searchable = (name + " " + text(subject.description)).toLowerCase();
+      if (query && !searchable.includes(query)) return;
+
+      count++;
+      grid.appendChild(makeCard(
+        "📂",
+        name,
+        subject.description || "Is subject ke chapters aur lectures dekho.",
+        chapters.length + " folders · " + lectures + " lectures  →",
+        () => openPage({
+          type: "subject",
+          courseIndex: page.courseIndex,
+          subjectIndex
+        })
+      ));
+    });
+
+    if (!count) showEmpty("Is search se koi subject nahi mila.");
+  }
+
+  function showSubject(page, query) {
+    const subject = subjectAt(page);
+    add(app, el("h1", "heading", subjectName(subject)));
+    add(app, el("p", "subtitle",
+      subject.description || "Chapter folder kholo aur lecture select karo."));
+
+    const grid = add(app, el("div", "grid"));
+    let count = 0;
+
+    chaptersOf(subject).forEach(chapter => {
+      const lectureCount = chapter.lectures.length;
+      const searchable = (chapter.name + " " + chapter.description).toLowerCase();
+      if (query && !searchable.includes(query)) return;
+
+      count++;
+      grid.appendChild(makeCard(
+        "📁",
+        chapter.name,
+        chapter.description || "Is folder ke andar ke lectures dekho.",
+        lectureCount + " lectures  →",
+        () => openPage({
+          type: "chapter",
+          courseIndex: page.courseIndex,
+          subjectIndex: page.subjectIndex,
+          chapterKey: chapter.key
+        })
+      ));
+    });
+
+    if (!count) showEmpty("Is subject mein koi chapter ya lecture nahi mila.");
+  }
+
+  function showChapter(page, query) {
+    const chapter = getChapter(page);
+    if (!chapter) return showEmpty("Chapter nahi mila. Back dabakar wapas jao.");
+
+    add(app, el("h1", "heading", chapter.name));
+    add(app, el("p", "subtitle",
+      chapter.description || "Apna lecture chuno."));
+
+    const grid = add(app, el("div", "grid"));
+    let count = 0;
+
+    chapter.lectures.forEach((lecture, index) => {
+      const title = lecture.title || ("Lecture " + (index + 1));
+      const searchable = (
+        title + " " + text(lecture.description) + " " + text(lecture.duration)
+      ).toLowerCase();
+
+      if (query && !searchable.includes(query)) return;
+
+      count++;
+      grid.appendChild(makeCard(
+        "▶️",
+        title,
+        lecture.description || "Video, PDF aur available study resources dekho.",
+        (lecture.duration ? "⏱ " + lecture.duration + " · " : "") + "Lecture kholo →",
+        () => openPage({
+          type: "lecture",
+          courseIndex: page.courseIndex,
+          subjectIndex: page.subjectIndex,
+          chapterKey: page.chapterKey,
+          lecture
+        })
+      ));
+    });
+
+    if (!count) showEmpty("Is folder mein search se koi lecture nahi mila.");
+  }
+
+  function showLecture(page) {
+    const lecture = page.lecture;
+
+    add(app, el("h1", "heading", lecture.title || "Lecture"));
+    add(app, el("p", "subtitle",
+      "Is lecture ke available videos, PDFs aur study resources yahan milenge."));
+
+    const info = add(app, el("section", "panel"));
+    add(info, el("h3", "", "📖 Lecture Details"));
+
+    if (lecture.duration) {
+      add(info, el("p", "meta", "⏱ Duration: " + lecture.duration));
+    }
+
+    if (lecture.description) {
+      add(info, el("p", "meta", lecture.description));
+    }
+
+    const resources = add(app, el("section", "panel"));
+    add(resources, el("h3", "", "📚 Study Resources"));
+    const list = add(resources, el("div", "resource-list"));
+    const before = list.childElementCount;
+
+    addResource(list, "▶ Watch Video", lecture.videoUrl);
+    addResource(list, "📄 PDF Notes", lecture.pdfUrl);
+    addResource(list, "🇮🇳 Hindi Notes", lecture.notesHiUrl);
+    addResource(list, "🇬🇧 English Notes", lecture.notesEnUrl);
+    addResource(list, "📝 Quiz", lecture.quizUrl);
+    addResource(list, "✍ Handwritten Notes", lecture.handwrittenUrl);
+    addResource(list, "📊 PPT", lecture.pptUrl);
+
+    if (list.childElementCount === before) {
+      add(resources, el("p", "meta",
+        "Is lecture ke links abhi data.js mein add nahi kiye gaye hain."));
+    }
+  }
+
+  function showEmpty(message) {
+    add(app, el("div", "notice", message));
+  }
+
+  function render() {
+    app.replaceChildren();
+    renderBreadcrumbs();
+    backBtn.disabled = stack.length <= 1;
+
+    if (typeof COURSE_DATA === "undefined" || !Array.isArray(COURSE_DATA)) {
+      showEmpty(
+        "Course data load nahi hua. Check karo ki index.html aur data.js ek hi folder mein hain aur data.js mein COURSE_DATA array hai."
+      );
+      return;
+    }
+
+    if (COURSE_DATA.length === 0) {
+      showEmpty("data.js mein abhi koi course nahi hai.");
+      return;
+    }
+
+    const query = search.value.trim().toLowerCase();
+    const page = current();
+
+    if (page.type === "home") showHome(query);
+    else if (page.type === "course") showCourse(page, query);
+    else if (page.type === "subject") showSubject(page, query);
+    else if (page.type === "chapter") showChapter(page, query);
+    else if (page.type === "lecture") showLecture(page);
+  }
+
+  backBtn.addEventListener("click", goBack);
+  homeBtn.addEventListener("click", goHome);
+  search.addEventListener("input", render);
+
+  render();
+})();
+</script>
 </body>
 </html>
